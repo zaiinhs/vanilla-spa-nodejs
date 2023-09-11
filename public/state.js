@@ -11,6 +11,9 @@ let state = {
   inputProducts: JSON.parse(localStorage.getItem("productItem")) || [],
   inputPrice: "",
   inputName: "",
+  inputValueFavorite: localStorage.getItem("inputValueFavorite") ?? "",
+  contacts: [],
+  favoriteContacts: JSON.parse(localStorage.getItem("favoriteContacts")) ?? [],
 };
 
 function setState(newState) {
@@ -21,6 +24,7 @@ function setState(newState) {
   onStateChange(prevState, nextState);
 }
 
+let timer;
 // Ini adalah sideEffect, dimana sebuah function yg akan dijalankan ketika state nya berubah
 function onStateChange(prevState, nextState) {
   if (prevState.inputProducts !== nextState.inputProducts) {
@@ -74,6 +78,32 @@ function onStateChange(prevState, nextState) {
 
   if (prevState.path !== nextState.path) {
     history.pushState(null, "", nextState.path);
+  }
+
+  if (prevState.inputValueFavorite != nextState.inputValueFavorite) {
+    localStorage.setItem("inputValueFavorite", nextState.inputValueFavorite);
+
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    setState({ isLoading: true });
+    timer = setTimeout(() => {
+      fetch(
+        `https://dummyjson.com/users/search?q=${nextState.inputValueFavorite}`
+      )
+        .then((res) => res.json())
+        .then((data) => setState({ contacts: data.users, errorMessage: "" }))
+        .catch((err) => setState({ contacts: [], errorMessage: err.message }))
+        .finally(() => setState({ isLoading: false }));
+    }, 600);
+  }
+
+  if (prevState.favoriteContacts != nextState.favoriteContacts) {
+    localStorage.setItem(
+      "favoriteContacts",
+      JSON.stringify(nextState.favoriteContacts)
+    );
   }
 }
 

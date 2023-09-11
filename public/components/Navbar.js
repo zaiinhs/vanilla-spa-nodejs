@@ -5,9 +5,20 @@ function NavBar() {
     href: "/home",
     label: "Home",
   });
+
   const linkInputProduct = Link({
     href: "/input-product",
     label: "Input Product",
+  });
+
+  const linkFavorite = Link({
+    href: "/favorite",
+    label: "Favorite",
+  });
+
+  const linkSearchContact = Link({
+    href: "/search-contact",
+    label: "Search Contact",
   });
 
   const linkAbout = Link({
@@ -19,6 +30,8 @@ function NavBar() {
   div.append(linkHome);
   div.append(linkAbout);
   div.append(linkInputProduct);
+  div.append(linkSearchContact);
+  div.append(linkFavorite);
 
   return div;
 }
