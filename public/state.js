@@ -8,6 +8,9 @@ let state = {
   total: 0,
   isLoading: false,
   errorMessage: "",
+  inputProducts: JSON.parse(localStorage.getItem("productItem")) || [],
+  inputPrice: "",
+  inputName: "",
 };
 
 function setState(newState) {
@@ -20,6 +23,13 @@ function setState(newState) {
 
 // Ini adalah sideEffect, dimana sebuah function yg akan dijalankan ketika state nya berubah
 function onStateChange(prevState, nextState) {
+  if (prevState.inputProducts !== nextState.inputProducts) {
+    localStorage.setItem(
+      "productItem",
+      JSON.stringify(nextState.inputProducts)
+    );
+  }
+
   if (prevState.inputValue !== nextState.inputValue) {
     setState({ skipItem: 0 });
   }

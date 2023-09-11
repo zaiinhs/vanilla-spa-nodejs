@@ -5,6 +5,10 @@ function NavBar() {
     href: "/home",
     label: "Home",
   });
+  const linkInputProduct = Link({
+    href: "/input-product",
+    label: "Input Product",
+  });
 
   const linkAbout = Link({
     href: "/about",
@@ -14,6 +18,7 @@ function NavBar() {
   const div = document.createElement("div");
   div.append(linkHome);
   div.append(linkAbout);
+  div.append(linkInputProduct);
 
   return div;
 }

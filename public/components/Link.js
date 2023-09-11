@@ -2,6 +2,7 @@ import { setState, render } from "../state.js";
 
 function Link(props) {
   const link = document.createElement("a");
+  link.style.marginRight = "15px";
   link.href = props.href;
   link.textContent = props.label;
 
