@@ -7,6 +7,7 @@ served using Nodejs HTTP server and npm module :
 
 how to use :
 
+- git clone https://github.com/zaiinhs/vanilla-spa-nodejs.git
 - npm install
 - npm run dev
 - the project will run at http://localhost:2023/
