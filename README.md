@@ -3,11 +3,10 @@
 served using Nodejs HTTP server and npm module :
 
 - express
-- nodemon
 
 how to use :
 
 - git clone https://github.com/zaiinhs/vanilla-spa-nodejs.git
 - npm install
-- npm run dev
+- npm start
 - the project will run at http://localhost:2023/

@@ -1,4 +1,5 @@
 import App from "./App.js";
+
 let state = {
   inputValue: localStorage.getItem("inputValue") ?? "",
   path: location.pathname,
@@ -108,13 +109,12 @@ function onStateChange(prevState, nextState) {
 }
 
 function render() {
-  const root = document.getElementById("root");
-  const app = App();
-
   const focusedElementId = document.activeElement.id;
   const focusedElementSelectionStart = document.activeElement.selectionStart;
   const focusedElementSelectionEnd = document.activeElement.selectionEnd;
 
+  const root = document.getElementById("root");
+  const app = App();
   root.innerHTML = "";
   root.append(app);
   if (focusedElementId) {
