@@ -1,6 +1,6 @@
-import ContactListItem from "../components/ContactListItem.js";
-import Link from "../components/Link.js";
-import { state } from "../state.js";
+import ContactListItem from "../components/ContactListItem";
+import Link from "../components/Link";
+import { state } from "../state";
 
 function FavoritePage() {
   const linkSearch = Link({

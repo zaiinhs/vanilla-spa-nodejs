@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
+    "ts": "rm -rf dist/ && tsc -w",
     "dev": "concurrently \"webpack --config webpack.dev.js\" \"npm start\"",
-    "start": "nodemon src/server/app.js",
+    "start": "nodemon dist/server/app.js",
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],

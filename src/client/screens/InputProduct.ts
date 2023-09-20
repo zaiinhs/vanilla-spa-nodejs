@@ -1,5 +1,5 @@
-import Link from "../components/Link.js";
-import { setState, state } from "../state.js";
+import Link from "../components/Link";
+import { setState, state } from "../state";
 
 function InputProduct() {
   const linkHome = Link({
@@ -19,7 +19,7 @@ function InputProduct() {
   inputNameItem.type = "text";
 
   const labelPriceItem = document.createElement("label");
-  labelPriceItem.texsettContent = "Harga";
+  labelPriceItem.textContent = "Harga";
 
   const inputPriceItem = document.createElement("input");
   inputPriceItem.placeholder = "ketik harga";

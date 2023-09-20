@@ -1,4 +1,4 @@
-import Link from "./Link.js";
+import Link from "./Link";
 
 function NavBar() {
   const linkHome = Link({

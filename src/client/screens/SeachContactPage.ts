@@ -1,6 +1,6 @@
-import ContactListItem from "../components/ContactListItem.js";
-import Link from "../components/Link.js";
-import { state, setState } from "../state.js";
+import ContactListItem from "../components/ContactListItem";
+import Link from "../components/Link";
+import { state, setState } from "../state";
 
 function SearchContact() {
   const linkHome = Link({
@@ -31,7 +31,7 @@ function SearchContact() {
   input.id = "search";
   input.placeholder = "Search a name";
   input.value = state.inputValueFavorite;
-  input.oninput = function (event) {
+  input.oninput = function (event: any) {
     const value = event.target.value;
     setState({ inputValueFavorite: value });
   };

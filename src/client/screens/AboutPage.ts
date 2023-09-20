@@ -1,4 +1,4 @@
-import Link from "../components/Link.js";
+import Link from "../components/Link";
 
 function AboutScreen() {
   const linkHome = Link({

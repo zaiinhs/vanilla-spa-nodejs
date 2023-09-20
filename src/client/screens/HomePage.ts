@@ -1,7 +1,7 @@
-import NavBar from "../components/Navbar.js";
-import Pagination from "../components/Pagination.js";
-import ProductInput from "../components/ProductInput.js";
-import ProductList from "../components/ProductList.js";
+import NavBar from "../components/Navbar";
+import Pagination from "../components/Pagination";
+import ProductInput from "../components/ProductInput";
+import ProductList from "../components/ProductList";
 
 function HomeScreen() {
   const navbar = NavBar();

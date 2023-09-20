@@ -1,4 +1,4 @@
-import { state, setState } from "../state.js";
+import { state, setState } from "../state";
 
 function Pagination() {
   const wrapperPagination = document.createElement("div");
@@ -27,18 +27,19 @@ function Pagination() {
 
   const selectLimit = document.createElement("select");
   selectLimit.disabled = state.isLoading;
-  selectLimit.onchange = (e) => {
+  selectLimit.onchange = (e: any) => {
     setState({ limitItem: Number(e.target.value) });
   };
 
   const listItem = [2, 5, 10, 20, 30];
-  listItem.forEach((item) => {
+  listItem.forEach((item: any) => {
     const optionLimit = document.createElement("option");
     optionLimit.textContent = item;
     optionLimit.value = item;
     selectLimit.appendChild(optionLimit);
   });
 
+  //@ts-ignore
   selectLimit.value = state.limitItem;
 
   wrapperPagination.style.marginTop = "20px";

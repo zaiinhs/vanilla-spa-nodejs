@@ -1,4 +1,4 @@
-import { state } from "../state.js";
+import { state } from "../state";
 
 function ProductList() {
   const titleProduct = document.createElement("ul");
