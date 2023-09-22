@@ -1,7 +1,7 @@
 import App from "./App";
 import { DataState } from "./components/typings/products";
 
-let state = {
+let state: DataState = {
   inputValue: localStorage.getItem("inputValue") ?? "",
   path: location.pathname,
   products: [],
@@ -111,9 +111,9 @@ function onStateChange(prevState, nextState) {
 
 function render() {
   const focusedElementId = document.activeElement.id;
-  // @ts-ignore
+
   const focusedElementSelectionStart = document.activeElement.selectionStart;
-  // @ts-ignore
+
   const focusedElementSelectionEnd = document.activeElement.selectionEnd;
 
   const root = document.getElementById("root");
@@ -123,9 +123,9 @@ function render() {
   if (focusedElementId) {
     const focusedElement = document.getElementById(focusedElementId);
     focusedElement.focus();
-    // @ts-ignore
+
     focusedElement.selectionStart = focusedElementSelectionStart;
-    // @ts-ignore
+
     focusedElement.selectionEnd = focusedElementSelectionEnd;
   }
 }

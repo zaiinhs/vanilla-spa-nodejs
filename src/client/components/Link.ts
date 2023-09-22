@@ -7,7 +7,7 @@ function Link(props: LinkProps) {
   link.href = props.href;
   link.textContent = props.label;
 
-  link.onclick = function (event: any) {
+  link.onclick = function (event) {
     event.preventDefault();
     const url = new URL(event.target.href);
     setState({ path: url.pathname });

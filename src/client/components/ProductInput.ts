@@ -5,7 +5,6 @@ function ProductInput() {
   input.id = "input";
   input.value = state.inputValue;
   input.oninput = function (event) {
-    // @ts-ignore
     setState({ inputValue: event.target.value });
   };
   input.placeholder = "Input your name";
