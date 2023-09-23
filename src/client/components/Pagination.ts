@@ -39,7 +39,7 @@ function Pagination() {
     selectLimit.appendChild(optionLimit);
   });
 
-  selectLimit.value = state.limitItem;
+  selectLimit.value = state.limitItem.toString();
 
   wrapperPagination.style.marginTop = "20px";
 

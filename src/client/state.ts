@@ -1,7 +1,18 @@
 import App from "./App";
-import { DataState } from "./components/typings/products";
+import { Product } from "./typings/products";
 
-let state: DataState = {
+export interface State {
+  inputValue: string;
+  path: string;
+  products: Product[];
+  limitItem: number;
+  skipItem: number;
+  total: number;
+  isLoading: boolean;
+  errorMessage: string;
+}
+
+let state: State = {
   inputValue: localStorage.getItem("inputValue") ?? "",
   path: location.pathname,
   products: [],
@@ -10,15 +21,9 @@ let state: DataState = {
   total: 0,
   isLoading: false,
   errorMessage: "",
-  inputProducts: JSON.parse(localStorage.getItem("productItem")) || [],
-  inputPrice: "",
-  inputName: "",
-  inputValueFavorite: localStorage.getItem("inputValueFavorite") ?? "",
-  contacts: [],
-  favoriteContacts: JSON.parse(localStorage.getItem("favoriteContacts")) ?? [],
 };
 
-function setState(newState) {
+function setState(newState: Partial<State>) {
   const prevState = { ...state };
   const nextState = { ...state, ...newState };
   state = nextState;
@@ -28,14 +33,7 @@ function setState(newState) {
 
 let timer;
 // Ini adalah sideEffect, dimana sebuah function yg akan dijalankan ketika state nya berubah
-function onStateChange(prevState, nextState) {
-  if (prevState.inputProducts !== nextState.inputProducts) {
-    localStorage.setItem(
-      "productItem",
-      JSON.stringify(nextState.inputProducts)
-    );
-  }
-
+function onStateChange(prevState: State, nextState: State) {
   if (prevState.inputValue !== nextState.inputValue) {
     setState({ skipItem: 0 });
   }
@@ -71,7 +69,7 @@ function onStateChange(prevState, nextState) {
       })
       .catch((error) => {
         setState({
-          errorMessage: "error fetching",
+          errorMessage: error.message,
           isLoading: false,
           products: [],
         });
@@ -81,52 +79,40 @@ function onStateChange(prevState, nextState) {
   if (prevState.path !== nextState.path) {
     history.pushState(null, "", nextState.path);
   }
-
-  if (prevState.inputValueFavorite != nextState.inputValueFavorite) {
-    localStorage.setItem("inputValueFavorite", nextState.inputValueFavorite);
-
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    setState({ isLoading: true });
-    timer = setTimeout(() => {
-      fetch(
-        `https://dummyjson.com/users/search?q=${nextState.inputValueFavorite}`
-      )
-        .then((res) => res.json())
-        .then((data) => setState({ contacts: data.users, errorMessage: "" }))
-        .catch((err) => setState({ contacts: [], errorMessage: err.message }))
-        .finally(() => setState({ isLoading: false }));
-    }, 600);
-  }
-
-  if (prevState.favoriteContacts != nextState.favoriteContacts) {
-    localStorage.setItem(
-      "favoriteContacts",
-      JSON.stringify(nextState.favoriteContacts)
-    );
-  }
 }
 
 function render() {
-  const focusedElementId = document.activeElement.id;
+  const focusedElementId = document.activeElement?.id;
 
-  const focusedElementSelectionStart = document.activeElement.selectionStart;
+  const focusedElementSelectionStart =
+    document.activeElement instanceof HTMLInputElement
+      ? document.activeElement.selectionStart
+      : null;
 
-  const focusedElementSelectionEnd = document.activeElement.selectionEnd;
+  const focusedElementSelectionEnd =
+    document.activeElement instanceof HTMLInputElement
+      ? document.activeElement.selectionEnd
+      : null;
 
   const root = document.getElementById("root");
   const app = App();
-  root.innerHTML = "";
-  root.append(app);
-  if (focusedElementId) {
-    const focusedElement = document.getElementById(focusedElementId);
-    focusedElement.focus();
 
-    focusedElement.selectionStart = focusedElementSelectionStart;
+  if (root !== null) {
+    root.innerHTML = "";
+    root.append(app);
 
-    focusedElement.selectionEnd = focusedElementSelectionEnd;
+    if (focusedElementId) {
+      const focusedElement = document.getElementById(focusedElementId);
+      focusedElement?.focus();
+
+      if (
+        focusedElement !== null &&
+        focusedElement instanceof HTMLInputElement
+      ) {
+        focusedElement.selectionStart = focusedElementSelectionStart;
+        focusedElement.selectionEnd = focusedElementSelectionEnd;
+      }
+    }
   }
 }
 

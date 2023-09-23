@@ -6,7 +6,7 @@ import ProductList from "../components/ProductList";
 function HomeScreen() {
   const navbar = NavBar();
   const textPreview = document.createElement("p");
-  textPreview.textContent = "Cari product Anda :";
+  textPreview.textContent = "Cari product Saya :";
 
   const div = document.createElement("div");
 
