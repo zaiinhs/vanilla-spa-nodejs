@@ -1,6 +1,7 @@
-import { setState, render } from "../state.js";
+import { setState, render } from "../state";
+import { LinkProps } from "./typings/products";
 
-function Link(props) {
+function Link(props: LinkProps) {
   const link = document.createElement("a");
   link.style.marginRight = "15px";
   link.href = props.href;

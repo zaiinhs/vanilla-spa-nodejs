@@ -1,4 +1,4 @@
-import { state, setState } from "../state.js";
+import { state, setState } from "../state";
 
 function ContactListItem(props) {
   const name = document.createElement("p");

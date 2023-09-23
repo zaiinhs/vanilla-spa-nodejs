@@ -3,6 +3,8 @@
 served using Nodejs HTTP server and npm module :
 
 - express
+- webpack
+- implement Typescript
 
 how to use :
 

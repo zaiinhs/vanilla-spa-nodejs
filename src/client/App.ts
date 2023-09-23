@@ -1,10 +1,10 @@
-import HomeScreen from "./screens/HomePage.js";
-import AboutScreen from "./screens/AboutPage.js";
-import InputProduct from "./screens/InputProduct.js";
-import FavoritePage from "./screens/FavoritePage.js";
-// import NotFoundPage from "./screens/NotFound.js";
-import SearchContact from "./screens/SeachContactPage.js";
-import { state } from "./state.js";
+import HomeScreen from "./screens/HomePage";
+import AboutScreen from "./screens/AboutPage";
+import InputProduct from "./screens/InputProduct";
+import FavoritePage from "./screens/FavoritePage";
+// import NotFoundPage from "./screens/NotFound";
+import SearchContact from "./screens/SeachContactPage";
+import { state } from "./state";
 
 function App() {
   const homeScreen = HomeScreen();
