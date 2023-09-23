@@ -1,3 +1,5 @@
 import { render, onStateChange, state } from "./state";
 render();
-onStateChange({}, state);
+
+// TODO: Improve this code later to remove any
+onStateChange({} as any, state);

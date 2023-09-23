@@ -1,5 +1,9 @@
-import { setState, render } from "../state";
-import { LinkProps } from "./typings/products";
+import { setState } from "../state";
+
+export type LinkProps = {
+  href: string;
+  label: string;
+};
 
 function Link(props: LinkProps) {
   const link = document.createElement("a");
@@ -8,10 +12,11 @@ function Link(props: LinkProps) {
   link.textContent = props.label;
 
   link.onclick = function (event) {
-    event.preventDefault();
-    const url = new URL(event.target.href);
-    setState({ path: url.pathname });
-    render();
+    if (event.target instanceof HTMLLinkElement) {
+      event.preventDefault();
+      const url = new URL(event.target.href);
+      setState({ path: url.pathname });
+    }
   };
 
   return link;

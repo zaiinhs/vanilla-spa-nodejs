@@ -5,7 +5,8 @@ function ProductInput() {
   input.id = "input";
   input.value = state.inputValue;
   input.oninput = function (event) {
-    setState({ inputValue: event.target.value });
+    if (event.target instanceof HTMLInputElement)
+      setState({ inputValue: event.target.value });
   };
   input.placeholder = "Input your name";
 
